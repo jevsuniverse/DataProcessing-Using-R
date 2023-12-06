@@ -1,0 +1,112 @@
+ types <- c("Spageti", "Lasagna", "Fetucini", "Macaroni", "Fusilli")
+freq <- c(100, 24, 50, 60, 24)
+
+# membuat table 
+data_frame <- data.frame(types, freq)
+
+# pie(x)
+#main = untuk menambahkan judul pada suatu diagram
+# col untuk membuat warna pada bagian diagram 
+# labels = untuk menambahkan labels
+pie(freq, main = "Penjualan Pasta dalam Sehari", col=rainbow(length(types)), labels = freq)
+piepercent <- round(freq*100/sum(freq),1)
+
+legend("topleft", types, fill = rainbow(length(types)), cex = 0.5)
+
+
+#bar chart --> diagram batang --> barplot(x)
+barplot(freq, xlab = "jenis pasta", ylab="frequensi makanan", names.arg = (types), col = "yellow")
+
+
+
+
+
+# histogram --> hist(x)
+
+hist(freq, main ="penjualan dalam sehari", xlab ="jenis pasta", border ="blue", col ="orange")
+
+
+#plot
+plot(freq, type ="l", main ="penjualan pastas dalam sehari", xlab ="jenis pasta", ylab = "frekuensi", col = "red")
+
+#box plot --> min, max, quartil, quatil1, median 
+# boxplot(x)
+
+boxplot(freq, main ="penjualan pasta dalam sehri", ylab =" frewkuansi", col="green")
+
+data <- read.csv('Participant.csv', sep = ",", stringsAsFactors = TRUE)
+Age <- data$Age
+
+
+# jika mau sort data 
+hist(Age, main= "rentang", xlab ="umur")
+
+
+# table bergunua untuk : munculin freq dan name 
+#untuk menghitung count atau berapa banyak data dalam suatu kategori 
+count_umur <- table(Age)
+print(count_umur)
+
+#untuk tau frequensi nya aja dari count_umur :
+count_frq_umur <- as.vector(count_umur)
+print(count_frq_umur)
+
+#untuk tau label nya aja dari count_umur :
+count_label_umur <- names(count_umur)
+print(count_label_umur)
+
+
+barplot(count_frq_umur, names.arg=count_label_umur,ylab = "freq", ylim=c(0,13))
+install.packages("ggplot2")
+
+library(ggplot2)
+
+
+
+#Missing Value 
+  #DatanYa tu gada 
+
+data1 <- c("felix", NA, "Budi", NA, "Chantyo", "Budi", "Vyan","Jeremy" )
+scores <- c(90, NA,20,  100, 65, 20, NA, NA)
+#cari tau apakah ada NA 
+is.na(data1)
+
+
+#kalau NA tolong ganti -
+data1[is.na(data1)]<- "-"
+print(data1)
+
+#kalau NA tolong sesuai yang disuruh 
+data1[is.na(data1)]<- c("Person1","Person2","Person3")
+
+#membuat dataframe
+dataframe <- data.frame(name = data1, scores)
+
+#menghilangkan duplikaat 
+dataframe[!duplicated(dataframe),]
+
+#menghilangkan row yang ada data NA 
+na.omit(dataframe)
+print(dataframe)
+
+#menghilangkan NA tapi di scoresnya aja (spesifik)
+dataframe[!is.na(dataframe$name),]
+
+
+#read csv, # ganti semua string kosong jadi NA
+datapokemon <- read.csv("Pokemon.csv", na.string = c(""))
+
+#select spesifik colum
+datagrass <- subset(datapokemon, datapokemon$Type.1 =="Grass")
+print(datagrass)
+
+#select beberapa spesifik column 
+datagrass <- subset(datapokemon, datapokemon$Type.1 =="Grass", c("HP", "Attack", "Name"))
+print(datagrass)
+
+#Aggregate 
+sum_result <- aggregate(datapokemon$Attack ~ datapokemon$Type.1, datapokemon,sum)
+
+mean_result <- aggregate (datapokemon$Attack ~ datapokemon$Type.1, datapokemon, mean)
+
+summary(datapokemon)

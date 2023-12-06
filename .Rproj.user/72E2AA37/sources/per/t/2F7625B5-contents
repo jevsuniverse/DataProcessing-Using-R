@@ -1,0 +1,50 @@
+# import
+datapokemon = read.csv("Pokemon.csv", sep= ",", stringsAsFactors = TRUE, fileEncoding= "UTF-8-BOM", na.string=c(""))
+
+dataType1 <- table(datapokemon$Type.1)
+print(dataType1 )
+
+datafreq <- as.vector(dataType1)
+print(datafreq)
+
+dataname <- names(dataType1)
+print(dataname)
+
+#pie
+pie(datafreq, main = "frekuensi", labels= piepercent, col= rainbow(length(dataname)))
+piepercent <- round(((datafreq/sum(datafreq))*100),1)
+legend("topleft",dataname, fill = rainbow(length(dataname)), cex = 0.6)
+
+# barplot
+barplot(datafreq, main="awdads", names.arg = dataname, ylab="awdwd", xlab ="awdawd", col = "blue", ylim=c(1,112))
+
+
+#hist
+hist(datafreq, xlab="adwwd", ylab="awdawd", main="awdwd")
+datapoktype2 <- datapokemon$Type.2
+
+boxplot(datafreq)
+
+
+plot(datafreq, type="l")
+
+#detect NA
+is.na(datapokemon$Type.2)
+datapokemon$Type.2 <- as.character(datapokemon$Type.2)
+datapokemon$Type.2[is.na(datapokemon$Type.2)] <- c("Person1", "Person2", "Person3", "Person2", "Person3", "Person2", "Person3", "Person2", "Person3", "Person2", "Person3", "Person2", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3", "Person3", "Person2", "Person3")
+
+dataframe = data.frame(datapokemon$Type.2, datapokemon$Name)
+
+
+dataframe[!duplicated(dataframe),]
+
+na.omit(dataframe)
+
+datapokegrass <-subset(datapokemon, datapokemon$Type.1=="Grass", c("HP"))
+
+datamean <- aggregate(datapokemon$HP ~ datapokemon$Type.1, datapokemon, mean)
+
+
+
+
+
